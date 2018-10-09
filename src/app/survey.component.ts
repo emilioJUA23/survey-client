@@ -1,6 +1,7 @@
 import { Component, Input } from "@angular/core";
 import * as Survey from "survey-angular";
 import * as widgets from "surveyjs-widgets";
+import { Http } from '@angular/http';
 
 import "inputmask/dist/inputmask/phone-codes/phone.js";
 
@@ -23,12 +24,25 @@ Survey.JsonObject.metaData.addProperty("page", "popupdescription:text");
 
 @Component({
   selector: "survey",
-  template: `<div class="survey-container contentcontainer codecontainer"><div id="surveyElement"></div></div>`
+  template: `<div class="survey-container contentcontainer codecontainer"><div id="surveyElement"></div><div id="surveyResult"></div></div>`
 })
 export class SurveyComponent {
   @Input()
   set json(value: object) {
     const surveyModel = new Survey.Model(value);
+    surveyModel.onComplete.add(function (result) {
+        // console.log(this.http.get('http://localhost:3000/survey/answer'));
+        document
+            .querySelector('#surveyResult')
+            .innerHTML = JSON.stringify(result.data);
+            var xhr = new XMLHttpRequest(); 
+            // xhr.open('GET', "http://localhost:3000/survey/answer", true);
+            // xhr.send();
+            xhr.open('POST',"http://localhost:3000/survey/answer",true);
+            xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+            xhr.send(JSON.stringify({"key1":"name1s"}));
+
+    });
     surveyModel.onAfterRenderQuestion.add((survey, options) => {
       if (!options.question.popupdescription) return;
 
@@ -49,6 +63,7 @@ export class SurveyComponent {
     });
     Survey.SurveyNG.render("surveyElement", { model: surveyModel });
   }
+  constructor() { }
 
   ngOnInit() {}
 }
