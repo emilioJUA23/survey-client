@@ -31,16 +31,14 @@ export class SurveyComponent {
   set json(value: object) {
     const surveyModel = new Survey.Model(value);
     surveyModel.onComplete.add(function (result) {
-        // console.log(this.http.get('http://localhost:3000/survey/answer'));
         document
             .querySelector('#surveyResult')
             .innerHTML = JSON.stringify(result.data);
             var xhr = new XMLHttpRequest(); 
-            // xhr.open('GET', "http://localhost:3000/survey/answer", true);
-            // xhr.send();
             xhr.open('POST',"http://localhost:3000/survey/answer",true);
-            xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
-            xhr.send(JSON.stringify({"key1":"name1s"}));
+            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhr.send(JSON.stringify(result.data));
+            console.log(xhr.responseText);
 
     });
     surveyModel.onAfterRenderQuestion.add((survey, options) => {
