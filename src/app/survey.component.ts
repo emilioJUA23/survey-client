@@ -24,7 +24,7 @@ Survey.JsonObject.metaData.addProperty("page", "popupdescription:text");
 
 @Component({
   selector: "survey",
-  template: `<div class="survey-container contentcontainer codecontainer"><div id="surveyElement"></div><div id="surveyResult"></div></div>`
+  template: `<div class="survey-container contentcontainer codecontainer"><div id="surveyElement"></div></div>`
 })
 export class SurveyComponent {
   @Input()
@@ -32,8 +32,8 @@ export class SurveyComponent {
     const surveyModel = new Survey.Model(value);
     surveyModel.onComplete.add(function (result) {
         document
-            .querySelector('#surveyResult')
-            .innerHTML = JSON.stringify(result.data);
+            // .querySelector('#surveyResult')
+            // .innerHTML = JSON.stringify(result.data);
             var xhr = new XMLHttpRequest(); 
             xhr.open('POST',"http://localhost:3000/survey/answer",true);
             xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");

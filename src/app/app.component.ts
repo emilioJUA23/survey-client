@@ -192,5 +192,10 @@ export class AppComponent {
 
   onSurveySaved(survey) {
     this.json = survey;
+    var xhr = new XMLHttpRequest(); 
+    xhr.open('POST',"http://localhost:3000/survey/instrument",true);
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhr.send(JSON.stringify(survey));
+    // console.log(xhr.responseText);
   }
 }
