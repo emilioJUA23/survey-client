@@ -12,7 +12,7 @@ export class AppComponent {
     req.open('GET', 'http://localhost:3000/survey/instrument', false); 
     req.send(null);
     if (req.status == 200)
-    {
+    { 
       var jsonArray = JSON.parse(req.responseText);
       return jsonArray[jsonArray.length-1];
     }
