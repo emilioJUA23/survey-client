@@ -34,7 +34,7 @@ export class SurveyComponent {
             // document
             // .querySelector('#surveyResult')
             // .innerHTML = JSON.stringify(result.data);
-            console.log(value["_id"])
+            // console.log(value["_id"])
             var xhr = new XMLHttpRequest();
             xhr.open('POST',"http://localhost:3000/survey/answer",true);
             xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");

@@ -23,7 +23,7 @@ export class AppComponent {
     }
   }
   json = this.consult_surveys();
-
+  
   onSurveySaved(survey) {
     this.json = survey;
     var xhr = new XMLHttpRequest();
