@@ -1,3 +1,4 @@
+
 import { Component } from "@angular/core";
 
 @Component({
@@ -6,6 +7,9 @@ import { Component } from "@angular/core";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
+  title = 'app';
+}
+/*export class AppComponent {
   title = "app works!";
   consult_surveys(){
     var req = new XMLHttpRequest();
@@ -33,4 +37,4 @@ export class AppComponent {
     this.json = this.consult_surveys();
     // console.log(xhr.responseText);
   }
-}
+}*/
