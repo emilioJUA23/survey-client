@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -12,6 +12,11 @@ import { ResultsDisplayComponent } from './results-display/results-display.compo
 import { UserComponent } from './user/user.component';
 import { appRoutes } from './routes';
 import { SignInComponent } from './user/sign-in/sign-in.component';
+import { HomeComponent} from './home/home.component';
+
+import { UserService } from './shared/user/user.service';
+import { AuthGuard } from './auth/auth.guard';
+import { AuthInterceptor } from './auth/auth.interceptor';
 
 
 @NgModule({
@@ -22,15 +27,21 @@ import { SignInComponent } from './user/sign-in/sign-in.component';
     SurveyEditorComponent,
     SurveyVersioningComponent,
     ResultsDisplayComponent,
-    UserComponent
+    UserComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [UserService, AuthGuard  ,
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass : AuthInterceptor,
+      multi : true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

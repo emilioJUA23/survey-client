@@ -3,11 +3,12 @@ import { HomeComponent } from './home/home.component';
 import { UserComponent } from './user/user.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';
 import { SignUpComponent } from './home/configuration/sign-up/sign-up.component';
+import { AuthGuard } from './auth/auth.guard';
 
 export const appRoutes : Routes =[
-    /*{path: 'home', component : HomeComponent},
+    { path: 'home', component: HomeComponent, canActivate:[AuthGuard] },
 
-    {
+    /*{
         path: 'signup', component : HomeComponent,
         children: [{path: '', component : SignUpComponent}]
     },*/
