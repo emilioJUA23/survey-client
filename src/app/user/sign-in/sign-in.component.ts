@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class SignInComponent implements OnInit {
   isLoginError : boolean = false;
+  
   constructor(private userService : UserService,private router : Router) { }
 
   ngOnInit() {

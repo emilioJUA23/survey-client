@@ -12,10 +12,10 @@ export class HomeComponent implements OnInit {
   constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit() {
-    this.userService.getUserClaims().subscribe((data: any) => {
+    /*this.userService.getUserClaims().subscribe((data: any) => {
       this.userClaims = data;
 
-    });
+    });*/
   }
 
   Logout() {

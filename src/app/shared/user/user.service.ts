@@ -13,11 +13,13 @@ export class UserService {
 
   registerUser(user: User) {
     const body: User = {
-      UserName: user.UserName,
-      Password: user.Password,
-      Email: user.Email,
-      FirstName: user.FirstName,
-      LastName: user.LastName
+      primerNombre: user.primerNombre,
+      segundoNombre: user.segundoNombre,
+      primerApellido: user.primerApellido,
+      segundoApellido: user.segundoApellido,
+      email: user.email,
+      password: user.password,
+      _id: ""
     }
     var reqHeader = new HttpHeaders({'No-Auth':'True', 
       'Content-Type': 'application/json'});

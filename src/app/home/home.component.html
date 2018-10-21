@@ -1,11 +1,15 @@
 <nav>
   <div class="nav-wrapper">
-    <a href="#" class="brand-logo center">
-      <i class="material-icons">cloud</i>Digitalización de encuestas</a>
+    <a href="#" class="brand-logo">
+      <i class="material-icons">cloud</i>Digitalización de encuestas
+    </a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li>
-        <a (click)="Logout()">Desconectar</a>
-      </li>
+      <li><a routerLink='#' routerLinkActive='active'>Encuestas</a></li>
+      <li><a routerLink='/configuration' routerLinkActive='active'>Configuración</a></li>
+      <li><a (click)="Logout()">Desconectar</a></li>
     </ul>
   </div>
+  <div class="row">
+      <router-outlet></router-outlet>
+    </div>
 </nav>

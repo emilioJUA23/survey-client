@@ -1,22 +1,20 @@
-<div *ngIf="isLoginError" class="red-text center error-message">
-    <i class="material-icons">error:</i> Correo Electrónico o contraseña incorrecta
+<div *ngIf="isLoginError" class="alert alert-danger text-center"  role="alert">
+  Correo Electrónico o contraseña incorrecta
 </div>
-<form #loginForm="ngForm" class="col s12 white" (ngSubmit)="OnSubmit(email.value,Password.value)">
+<form #loginForm="ngForm" (ngSubmit)="OnSubmit(email.value,Password.value)">
    <div class="row">
-     <div class="input-field col s12">
-       <i class="material-icons prefix">account_circle</i>
-       <input type="text" #email ngModel name="email" placeholder="Correo Electrónico" required>
+     <div class="form-group">
+      <input type="text" #email ngModel name="email" placeholder="Correo Electrónico" required>
      </div>
    </div>
    <div class="row">
-      <div class="input-field col s12">
-        <i class="material-icons prefix">vpn_key</i>
+      <div class="form-group">
         <input type="password" #Password ngModel name="Password" placeholder="contraseña" required>
       </div>
     </div>
     <div class="row">
-        <div class="input-field col s12">
-          <button [disabled]="!loginForm.valid" class="btn-large btn-submit" type="submit">Ingresar</button>
+        <div class="form-group">
+          <button [disabled]="!loginForm.valid" class="btn btn-primary btn-lg" type="button">Ingresar</button>
         </div>
       </div>
 </form>
