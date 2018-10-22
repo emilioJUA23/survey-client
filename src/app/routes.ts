@@ -5,9 +5,15 @@ import { SignInComponent } from './user/sign-in/sign-in.component';
 import { AuthGuard } from './auth/auth.guard';
 import { ConfigurationComponent } from './home/configuration/configuration.component';
 import { UserIndexComponent } from './home/configuration/user/user-index/user-index.component';
+import { WelcomeComponent } from './home/welcome/welcome.component';
 
 export const AppRoutes : Routes =[
     { path: 'home', component: HomeComponent, canActivate:[AuthGuard] },
+    {
+        path: 'welcome', component : HomeComponent,
+        children: [
+            {path: '', component : WelcomeComponent}]
+    },
     {
         path: 'configuration', component : HomeComponent,
         children: [

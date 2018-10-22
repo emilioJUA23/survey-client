@@ -22,6 +22,9 @@ import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { UserIndexComponent } from './home/configuration/user/user-index/user-index.component';
 import { DataTablesResponseService } from './shared/data-tables-response/data-tables-response.service';
+import { WelcomeComponent } from './home/welcome/welcome.component';
+
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -35,9 +38,11 @@ import { DataTablesResponseService } from './shared/data-tables-response/data-ta
     UserComponent,
     HomeComponent,
     ConfigurationComponent,
-    UserIndexComponent
+    UserIndexComponent,
+    WelcomeComponent
   ],
   imports: [
+    ToastrModule,
     BrowserModule,
     DataTablesModule,
     FormsModule,

@@ -1,15 +1,16 @@
-<nav>
-  <div class="nav-wrapper">
-    <a href="#" class="brand-logo">
-      <i class="material-icons">cloud</i>Digitalización de encuestas
-    </a>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a routerLink='#' routerLinkActive='active'>Encuestas</a></li>
-      <li><a routerLink='/configuration' routerLinkActive='active'>Configuración</a></li>
-      <li><a (click)="Logout()">Desconectar</a></li>
-    </ul>
-  </div>
-  <div class="row">
-      <router-outlet></router-outlet>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand active" href="/welcome">Digitalizaacion de encuestas</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+          <li><a  class="nav-item nav-link" routerLink='#' routerLinkActive='active'>Encuestas</a></li>
+          <li><a  class="nav-item nav-link" routerLink='/configuration' routerLinkActive='active'>Configuración</a></li>
+          <li><a  class="nav-item nav-link" (click)="Logout()">Desconectar</a></li>
+      </ul>
     </div>
 </nav>
+<div class="row">
+   <router-outlet></router-outlet>
+</div>

@@ -18,7 +18,7 @@ export class UserService {
       primerApellido: user.primerApellido,
       segundoApellido: user.segundoApellido,
       email: user.email,
-      password: user.password,
+      password: AppConstants.hash(user.password),
       _id: ""
     }
     var reqHeader = new HttpHeaders({'No-Auth':'True', 
@@ -30,7 +30,7 @@ export class UserService {
     var data = {email, password}
     console.log(data);
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post(this._baseURL + '/security/login', data, { headers: reqHeader });
+    return this.http.post(this._baseURL + '/secu-rity/login', data, { headers: reqHeader });
   }
 
   getUserClaims(){
