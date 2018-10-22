@@ -6,6 +6,6 @@ export class AppConstants {
     public static get pageLength(): number { return 10;}
 
     public static hash( data: any ) : string {
-        git 
+        return SHA256(JSON.stringify(data)).toString();
     }
 }
