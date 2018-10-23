@@ -11,6 +11,7 @@ export class UserService {
     this._baseURL = AppConstants.baseURL;
    }
 
+
   registerUser(user: User) {
     const body: User = {
       primerNombre: user.primerNombre,
@@ -27,10 +28,28 @@ export class UserService {
   }
 
   userAuthentication(email, password) {
-    var data = {email, password}
-    console.log(data);
+    password = AppConstants.hash(password);
+    var data = {email, password};
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post(this._baseURL + '/secu-rity/login', data, { headers: reqHeader });
+    return this.http.post(this._baseURL + '/security/login', data, { headers: reqHeader });
+  }
+
+  updateUserRoles(userID, push, pull){
+    var data = {push, pull};
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post(this._baseURL + `/security/usuario/${userID}`, data, { headers: reqHeader });
+  }
+
+deleteUser(userID){
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+    data = {};
+    return this.http.delete(this._baseURL + `/security/usuario/${userID}`, data, { headers: reqHeader });
+  }
+
+deleteUser(userID){
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+    data = {};
+    return this.http.delete(this._baseURL + `/security/usuario/${userID}`, data, { headers: reqHeader });
   }
 
   getUserClaims(){
