@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../shared/user/user.service';
+import { AppUtils } from '../app.utils';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +20,8 @@ export class HomeComponent implements OnInit {
   }
 
   Logout() {
-    localStorage.removeItem('userToken');
+    AppUtils.deleteLocal('userToken');
+    AppUtils.deleteLocal('userData');
     this.router.navigate(['/login']);
   }
 }

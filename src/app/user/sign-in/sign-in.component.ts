@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../shared/user/user.service';
+import { AppUtils } from '../../app.utils';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
@@ -17,7 +18,8 @@ export class SignInComponent implements OnInit {
   }
     OnSubmit(userName,password){
      this.userService.userAuthentication(userName,password).subscribe((data : any)=>{
-      localStorage.setItem('userToken',data.token);
+      AppUtils.setLocal('userToken',data.token);
+      AppUtils.setLocal('userData', data.usuario);
       this.router.navigate(['/home']);
     },
     (err : HttpErrorResponse)=>{

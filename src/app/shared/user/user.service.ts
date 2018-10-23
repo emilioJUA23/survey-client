@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from './user.model';
+import { AppUtils } from '../../app.utils';
 import{ AppConstants} from '../../app.constants';
+
 
 @Injectable()
 export class UserService {
@@ -11,7 +13,6 @@ export class UserService {
     this._baseURL = AppConstants.baseURL;
    }
 
-
   registerUser(user: User) {
     const body: User = {
       primerNombre: user.primerNombre,
@@ -19,8 +20,9 @@ export class UserService {
       primerApellido: user.primerApellido,
       segundoApellido: user.segundoApellido,
       email: user.email,
-      password: AppConstants.hash(user.password),
-      _id: ""
+      password: AppUtils.hash(user.password),
+      _id: "",
+      roles: []
     }
     var reqHeader = new HttpHeaders({'No-Auth':'True', 
       'Content-Type': 'application/json'});
@@ -28,32 +30,48 @@ export class UserService {
   }
 
   userAuthentication(email, password) {
-    password = AppConstants.hash(password);
+    password = AppUtils.hash(password);
     var data = {email, password};
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post(this._baseURL + '/security/login', data, { headers: reqHeader });
   }
 
-  updateUserRoles(userID, push, pull){
-    var data = {push, pull};
+  updateUserRoles(user: User, pull){
+    const body: User = {
+      primerNombre: user.primerNombre,
+      segundoNombre: user.segundoNombre,
+      primerApellido: user.primerApellido,
+      segundoApellido: user.segundoApellido,
+      email: user.email,
+      password: AppUtils.hash(user.password),
+      _id:user._id,
+      roles: user.roles
+    }
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post(this._baseURL + `/security/usuario/${userID}`, data, { headers: reqHeader });
+    return this.http.post(this._baseURL + `/security/usuario/${user._id}`, body, { headers: reqHeader });
   }
 
 deleteUser(userID){
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
-    data = {};
+    let data = {};
     return this.http.delete(this._baseURL + `/security/usuario/${userID}`, data, { headers: reqHeader });
   }
 
-deleteUser(userID){
+resetPassword(userID, password){
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
-    data = {};
+    let data = {password:  AppUtils.hash(password)};
     return this.http.delete(this._baseURL + `/security/usuario/${userID}`, data, { headers: reqHeader });
   }
 
-  getUserClaims(){
-   return  this.http.get(this._baseURL+'/api/GetUserClaims');
+recoverpassword(email)
+{
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+    let data = {email};
+    return this.http.delete(this._baseURL + `/security/recoverpassword`, data, { headers: reqHeader });
+}
+
+viewmatch(view){
+   return  this.http.get(this._baseURL+ `/security/usuario/viewmatch/${view}`);
   }
 
 }
