@@ -1,11 +1,11 @@
   <form #userRegistrationForm="ngForm" (ngSubmit)="OnSubmit(userRegistrationForm)">
-     <div class="row">
-       <div class="form-group">
-        <input type="text" #primerNombre="ngModel" [(ngModel)]="user.primerNombre" name="primerNombre" placeholder="Primer nombre" required>
-        <label data-error="Campo requerido!">Primer Nombre</label>
-       </div>
-     </div>
-     <div class="row">
+    <div class="row">
+        <div class="form-group">
+         <input type="text" #primerNombre="ngModel" [(ngModel)]="user.primerNombre" name="primerNombre" placeholder="Primer nombre" required>
+         <label data-error="Campo requerido!">Primer Nombre</label>
+        </div>
+      </div>
+      <div class="row">
         <div class="form-group">
          <input type="text"  #segundoNombre="ngModel" [(ngModel)]="user.segundoNombre" name="segundoNombre" placeholder="Segundo nombre">
         </div>
@@ -34,8 +34,13 @@
           </div>
       </div>
       <div class="row">
-          <div class="form-group">
-            <button [disabled]="!loginForm.valid" class="btn btn-primary btn-lg" type="submit">Crear usuario</button>
-          </div>
+        <label ng-repeat="rol in roles">
+            <input type="checkbox" ng-model="user.roles[rol.id]" value="{{rol.id}}"> {{rol.nombre}} 
+        </label>
+      </div>
+      <div class="row">
+        <div class="form-group">
+          <button [disabled]="!loginForm.valid" class="btn btn-primary btn-lg" type="submit">Ingresar</button>
         </div>
+      </div>
   </form>

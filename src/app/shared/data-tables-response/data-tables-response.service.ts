@@ -12,7 +12,7 @@ export class DataTablesResponseService {
 
   getTable(dataTablesParameters, controller){
     console.log(dataTablesParameters);
-    var reqHeader = new HttpHeaders({'Content-Type': 'application/json'});
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json','Authorization': 'true' });
     return this.http.post(this._baseURL + controller, dataTablesParameters,{headers : reqHeader});
   }
 }

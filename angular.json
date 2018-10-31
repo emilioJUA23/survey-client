@@ -29,7 +29,7 @@
             ],
             "styles": [
               "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/plugings/startbootstrap-sb-admin-gh-pages/vendor/bootstrap/css/bootstrap.min.css",
               "node_modules/survey-angular/survey.css",
               "node_modules/surveyjs-editor/surveyeditor.css",
               "node_modules/jquery-ui/themes/base/theme.css",
@@ -48,15 +48,21 @@
               "node_modules/jquery-bar-rating/dist/themes/bars-square.css",
               "node_modules/jquery-bar-rating/dist/themes/bootstrap-stars.css",
               "node_modules/jquery-bar-rating/dist/themes/fontawesome-stars-o.css",
-              "node_modules/datatables.net-dt/css/jquery.dataTables.css"
+              "node_modules/datatables.net-dt/css/jquery.dataTables.css",
+              "src/plugings/startbootstrap-sb-admin-gh-pages/vendor/fontawesome-free/css/all.min.css",
+              "src/plugings/startbootstrap-sb-admin-gh-pages/css/sb-admin.css"
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.js",
+              "src/plugings/startbootstrap-sb-admin-gh-pages/vendor/jquery/jquery.min.js",
+              "src/plugings/startbootstrap-sb-admin-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js",
+              "src/plugings/startbootstrap-sb-admin-gh-pages/vendor/jquery-easing/jquery.easing.min.js",
               "node_modules/jquery-ui/ui/widgets/datepicker.js",
               "node_modules/select2/dist/js/select2.js",
               "node_modules/jquery-bar-rating/dist/jquery.barrating.min.js",
               "node_modules/datatables.net/js/jquery.dataTables.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "src/plugings/ckeditor/ckeditor.js",
+              "src/plugings/startbootstrap-sb-admin-gh-pages/vendor/jquery-easing/jquery.easing.min.js"
             ]
           },
           "configurations": {

@@ -5,6 +5,7 @@ import { SignInComponent } from './user/sign-in/sign-in.component';
 import { AuthGuard } from './auth/auth.guard';
 import { ConfigurationComponent } from './home/configuration/configuration.component';
 import { UserIndexComponent } from './home/configuration/user/user-index/user-index.component';
+import { SignUpComponent } from './home/configuration/user/sign-up/sign-up.component';
 import { WelcomeComponent } from './home/welcome/welcome.component';
 
 export const AppRoutes : Routes =[
@@ -25,6 +26,14 @@ export const AppRoutes : Routes =[
             {path: '', component : ConfigurationComponent,
             children: [
                 {path: '', component : UserIndexComponent}
+            ]}]
+    },
+    {
+        path: 'usersignup', component : HomeComponent,
+        children: [
+            {path: '', component : ConfigurationComponent,
+            children: [
+                {path: '', component : SignUpComponent}
             ]}]
     },
     /*{

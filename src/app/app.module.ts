@@ -21,10 +21,13 @@ import { UserService } from './shared/user/user.service';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { UserIndexComponent } from './home/configuration/user/user-index/user-index.component';
+import { SignUpComponent } from './home/configuration/user/sign-up/sign-up.component';
 import { DataTablesResponseService } from './shared/data-tables-response/data-tables-response.service';
 import { WelcomeComponent } from './home/welcome/welcome.component';
 
 import { ToastrModule } from 'ngx-toastr';
+import {RolService} from './shared/rol/rol.service';
+import {ViewService} from './shared/view/view.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,8 @@ import { ToastrModule } from 'ngx-toastr';
     HomeComponent,
     ConfigurationComponent,
     UserIndexComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    SignUpComponent
   ],
   imports: [
     ToastrModule,
@@ -51,6 +55,8 @@ import { ToastrModule } from 'ngx-toastr';
   ],
   providers: [UserService,
     DataTablesResponseService,
+    ViewService,
+    RolService,
     AuthGuard,
     {
       provide : HTTP_INTERCEPTORS,

@@ -22,8 +22,7 @@ export class RolService {
       vistas: [],
       _id: ""
     }
-    var reqHeader = new HttpHeaders({'No-Auth':'True', 
-      'Content-Type': 'application/json'});
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json','Authorization': 'true' });
     return this.http.post(this._baseURL + '/api/v1/security/rol', body,{headers : reqHeader});
   }
 
@@ -38,19 +37,22 @@ export class RolService {
       vistas: [],
       _id: rol._id
     }
-    var reqHeader = new HttpHeaders({'No-Auth':'True', 
-      'Content-Type': 'application/json'});
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json','Authorization': 'true' });
     return this.http.put(this._baseURL +  `/api/v1/security/rol/${rol._id}`, body,{headers : reqHeader});
   }
 
     deleteRol(idRol:number) {
-    var reqHeader = new HttpHeaders({'No-Auth':'True', 
-      'Content-Type': 'application/json'});
-    const body ={};
-    return this.http.delete(this._baseURL +  `/api/v1/security/rol/${idRol}`, body,{headers : reqHeader});
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json','Authorization': 'true' });
+    return this.http.delete(this._baseURL +  `/api/v1/security/rol/${idRol}`,{headers : reqHeader});
   }
 
-  getRol(){
-    
+  getRol(userRol){
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json','Authorization': 'true' });
+    return  this.http.get(this._baseURL+ `/security/rol/${userRol}`,{headers : reqHeader});
+  }
+  
+  getAll(){
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json','Authorization': 'true' });
+    return  this.http.get(this._baseURL+ `/security/rol/all`,{headers : reqHeader});
   }
 }

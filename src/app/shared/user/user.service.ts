@@ -20,12 +20,13 @@ export class UserService {
       primerApellido: user.primerApellido,
       segundoApellido: user.segundoApellido,
       email: user.email,
-      password: AppUtils.hash(user.password),
+      password: user.password,
       _id: "",
       roles: []
     }
     var reqHeader = new HttpHeaders({'No-Auth':'True', 
-      'Content-Type': 'application/json'});
+      'Content-Type': 'application/json',
+    'Authorization': 'true'});
     return this.http.post(this._baseURL + '/security/usuario', body,{headers : reqHeader});
   }
 
@@ -47,31 +48,37 @@ export class UserService {
       _id:user._id,
       roles: user.roles
     }
-    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json','Authorization': 'true' });
     return this.http.post(this._baseURL + `/security/usuario/${user._id}`, body, { headers: reqHeader });
   }
 
 deleteUser(userID){
-    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
-    let data = {};
-    return this.http.delete(this._baseURL + `/security/usuario/${userID}`, data, { headers: reqHeader });
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json','Authorization': 'true' });
+    return this.http.delete(this._baseURL + `/security/usuario/${userID}`, { headers: reqHeader });
   }
 
 resetPassword(userID, password){
-    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json','Authorization': 'true' });
     let data = {password:  AppUtils.hash(password)};
-    return this.http.delete(this._baseURL + `/security/usuario/${userID}`, data, { headers: reqHeader });
+    return this.http.post(this._baseURL + `/security/usuario/${userID}`, data, { headers: reqHeader });
   }
 
 recoverpassword(email)
 {
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
     let data = {email};
-    return this.http.delete(this._baseURL + `/security/recoverpassword`, data, { headers: reqHeader });
+    return this.http.post(this._baseURL + `/security/recoverpassword`, data, { headers: reqHeader });
 }
 
 viewmatch(view){
-   return  this.http.get(this._baseURL+ `/security/usuario/viewmatch/${view}`);
+  var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json','Authorization': 'true' });
+   return  this.http.get(this._baseURL+ `/security/usuario/viewmatch/${view}`,{ headers: reqHeader });
   }
+
+getUser(userID){
+  var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json','Authorization': 'true' });
+  return  this.http.get(this._baseURL+ `/security/usuario/${userID}`,{ headers: reqHeader });
+}
+
 
 }

@@ -20,6 +20,13 @@ export class UserIndexComponent implements OnInit {
     this._pageLength = AppConstants.pageLength;
   }
 
+  static selectOptions( id: any ) : string {
+    return `<select class='form-control'>
+      <a class="nav-link active" routerLink='#' routerLinkActive='active'>Ver/Editar</a>
+    </select>`
+  }
+
+
   ngOnInit(): void {
     const that = this;
    
@@ -49,10 +56,16 @@ export class UserIndexComponent implements OnInit {
           this.isIndexError = true;
         });
       },
-      columns: [{ data: 'primerNombre' },
+      columns: [
+       { data: 'email' },
        { data: null, 
         render:( data, type, row ) =>{
           return `${data.primerNombre} ${data.segundoNombre} ${data.primerApellido} ${data.segundoApellido}`;
+        }
+       },
+       { data: '_id', 
+        render:( data, type, row ) =>{
+          return UserIndexComponent.selectOptions(data);
         }
        }]
     }
