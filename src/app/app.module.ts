@@ -8,6 +8,9 @@ import { SurveyComponent } from './survey.component';
 import { SurveyEditorComponent } from './survey.editor.component';
 import { SurveyVersioningComponent } from './survey-versioning/survey-versioning.component';
 import { ResultsDisplayComponent } from './results-display/results-display.component';
+import { AppRoutingModule } from './/app-routing.module';
+import { SurveyEditorWrapperComponent } from './survey-editor-wrapper/survey-editor-wrapper.component';
+import { SurveyWrapperComponent } from './survey-wrapper/survey-wrapper.component';
 
 @NgModule({
   declarations: [
@@ -15,12 +18,15 @@ import { ResultsDisplayComponent } from './results-display/results-display.compo
     SurveyComponent,
     SurveyEditorComponent,
     SurveyVersioningComponent,
-    ResultsDisplayComponent
+    ResultsDisplayComponent,
+    SurveyEditorWrapperComponent,
+    SurveyWrapperComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,12 +1,13 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
+import { SurveyEditorComponent} from '../survey.editor.component';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"]
+  selector: 'app-survey-editor-wrapper',
+  templateUrl: './survey-editor-wrapper.component.html',
+  styleUrls: ['./survey-editor-wrapper.component.css']
 })
-export class AppComponent {
-  title = "app works!";
+export class SurveyEditorWrapperComponent implements OnInit {
+
   consult_surveys(){
     var req = new XMLHttpRequest();
     req.open('GET', 'http://localhost:3000/survey/instrument', false);
@@ -23,7 +24,7 @@ export class AppComponent {
     }
   }
   json = this.consult_surveys();
-  
+
   onSurveySaved(survey) {
     this.json = survey;
     var xhr = new XMLHttpRequest();
@@ -32,4 +33,10 @@ export class AppComponent {
     xhr.send(JSON.stringify(survey));
     this.json = this.consult_surveys();
   }
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
 }
