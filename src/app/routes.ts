@@ -7,6 +7,7 @@ import { ConfigurationComponent } from './home/configuration/configuration.compo
 import { UserIndexComponent } from './home/configuration/user/user-index/user-index.component';
 import { SignUpComponent } from './home/configuration/user/sign-up/sign-up.component';
 import { WelcomeComponent } from './home/welcome/welcome.component';
+import { ForgotPasswordComponent } from './user/forgot-password/forgot-password.component';
 
 export const AppRoutes : Routes =[
     { path: 'home', component: HomeComponent, canActivate:[AuthGuard] },
@@ -43,6 +44,10 @@ export const AppRoutes : Routes =[
     {
         path: 'login', component : UserComponent,
         children: [{path: '', component : SignInComponent}]
+    },
+    {
+        path: 'forgotpassword', component : UserComponent,
+        children: [{path: '', component : ForgotPasswordComponent}]
     },
     {path:"", redirectTo: '/login', pathMatch:"full"}
 ];

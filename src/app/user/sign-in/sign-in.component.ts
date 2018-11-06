@@ -17,11 +17,10 @@ export class SignInComponent implements OnInit {
   ngOnInit() {
   }
     OnSubmit(userName,password){
-      console.log("Entro a autentificar");
      this.userService.userAuthentication(userName,password).subscribe((data : any)=>{
       AppUtils.setLocal('userToken',data.token);
       AppUtils.setLocal('userData', data.usuario);
-      this.router.navigate(['/home']);
+      this.router.navigate(['/welcome']);
     },
     (err : HttpErrorResponse)=>{
       this.isLoginError = true;

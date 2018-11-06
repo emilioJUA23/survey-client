@@ -14,12 +14,12 @@
         <div class="form-group">
           <div class="form-label-group">
             <input type="password" #Password ngModel name="Password" class="form-control"  required>
-            <label for="inputPassword">Password</label>
+            <label for="inputPassword">Contraseña</label>
           </div>
         </div>
         <button [disabled]="!loginForm.valid" class="btn btn-primary btn-block" type="submit">Ingresar</button>
       </form>
       <div class="text-center">
-        <a class="d-block small" href="#">¿Olvidastes tu contraseña?</a>
+        <a  class="d-block small" routerLink='/forgotpassword' routerLinkActive='active'>¿Olvidastes tu contraseña?</a>
       </div>
     </div>

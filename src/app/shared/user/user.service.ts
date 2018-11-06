@@ -58,9 +58,10 @@ deleteUser(userID){
   }
 
 resetPassword(userID, password){
+    console.log("cambiando contra");
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json','Authorization': 'true' });
     let data = {password:  AppUtils.hash(password)};
-    return this.http.post(this._baseURL + `/security/usuario/${userID}`, data, { headers: reqHeader });
+    return this.http.post(this._baseURL + `/security/resetpassword/${userID}`, data, { headers: reqHeader });
   }
 
 recoverpassword(email)

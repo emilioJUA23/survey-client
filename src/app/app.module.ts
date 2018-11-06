@@ -28,6 +28,7 @@ import { WelcomeComponent } from './home/welcome/welcome.component';
 import { ToastrModule } from 'ngx-toastr';
 import {RolService} from './shared/rol/rol.service';
 import {ViewService} from './shared/view/view.service';
+import { ForgotPasswordComponent } from './user/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {ViewService} from './shared/view/view.service';
     ConfigurationComponent,
     UserIndexComponent,
     WelcomeComponent,
-    SignUpComponent
+    SignUpComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     ToastrModule,
