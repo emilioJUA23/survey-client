@@ -4,7 +4,8 @@ import { RolService } from '../../../../shared/rol/rol.service';
 import { User } from '../../../../shared/user/user.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormArray, FormGroup, NgForm } from '@angular/forms';
+import {AppUtils} from '../../../../app.utils';
 
 @Component({
   selector: 'app-sign-up',
@@ -14,21 +15,86 @@ import { NgForm } from '@angular/forms';
 export class SignUpComponent implements OnInit {
   user: User;
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
-  roles = [];
   error = false;
+  userForm: FormGroup;
+  rolIsService = false;
 
-  constructor(private userService : UserService,private router : Router, private rolService : RolService) { }
+  constructor(private userService : UserService,private router : Router, private rolService : RolService, private fb: FormBuilder) {
+    this.userForm = this.fb.group({
+      primerNombre: [''],
+      segundoNombre: [''],
+      primerApellido: [''],
+      segundoApellido: [''],
+      email: [''],
+      password: [''],
+      _id : [0],
+      roles: this.fb.array([this.fb.control("")])
+    });
+  }
 
-  ngOnInit() {
-    this.resetForm();
+  public async waitConstructor(){
+    await this.configurateRoles();
+  }
+
+  public configurateRoles(){
+    this.buildUser();
     this.getRoles();
   }
+
+  buildUser(){
+    this.user = new User();
+      this.user.primerNombre = "";
+      this.user.segundoNombre = "",
+      this.user.primerApellido = "",
+      this.user.segundoApellido = "",
+      this.user.email = "",
+      this.user.password = "",
+      this.user._id = "",
+      this.user.roles = []
+  }
+
+  get roles() {
+    return this.userForm.get('roles') as FormArray;
+  }
+
+  
+  buildRoles() {
+    const arr = this.user.roles.map(skill => {
+      return this.fb.control(skill.selected);
+    });
+    return this.fb.array(arr);
+  }
+
+  buildForm()
+  {
+    this.userForm = this.fb.group({
+      primerNombre: [''],
+      segundoNombre: [''],
+      primerApellido: [''],
+      segundoApellido: [''],
+      email: [''],
+      password: [''],
+      _id : [0],
+      roles: this.buildRoles()
+    });
+    this.rolIsService = true;
+  }
+
+  ngOnInit() {
+        this.buildUser();
+        this.getRoles();
+   }
 
   getRoles(){
     this.rolService.getAll()
     .subscribe((data: any) => {
       if (data.ok == true) {
-        this.roles = data.data;
+        let _roles = data.data.map(rol => {
+          rol.selected = false;
+          return rol;
+        });
+        this.user.roles = _roles;
+        this.buildForm();
       }
       else{
         this.error = true;
@@ -39,28 +105,11 @@ export class SignUpComponent implements OnInit {
     });
   }
 
-  resetForm(form?: NgForm) {
-    if (form != null)
-      form.reset();
-    this.user = {
-      primerNombre: '',
-      segundoNombre: '',
-      primerApellido: '',
-      segundoApellido: '',
-      email: '',
-      password: '',
-      _id: '',
-      roles: []
-    }
-    this.roles = [];
-    this.error = false;
-  }
-
-  OnSubmit(form: NgForm) {
-    this.userService.registerUser(form.value)
+  OnSubmit(form) {
+   form.roles = AppUtils.getArrayIds(form.roles, this.user.roles);
+   this.userService.registerUser(form)
       .subscribe((data: any) => {
         if (data.ok == true) {
-          this.resetForm(form);
           this.router.navigate(['/userindex']);
         }
         else

@@ -16,4 +16,11 @@ export class AppUtils {
     public static deleteLocal(key){
           localStorage.removeItem('userToken');
     }
+
+    public static getArrayIds(formArray: any[], modelArray: any[]) :string[]{
+        const selectedOrderIds = formArray
+        .map((v, i) => v ? modelArray[i]._id : null)
+        .filter(v => v !== null);
+        return selectedOrderIds;
+    }
 }

@@ -1,16 +1,15 @@
-    <div class="row">
-        <a routerLink='/usersignup' class="btn btn-primary btn-lg btn-block">Agregar un nuevo usuario</a>
-    </div>
-    <div class="row">
-        <div class="col s12">
-          <table datatable [dtOptions]="dtOptions" class="display" style="width:100%">
-              <thead>
-                <tr>
-                  <th>Correo Electronico</th>
-                  <th>Nombre completo</th>
-                  <th>Opciones</th>
-                </tr>
-              </thead>
-            </table>
-        </div>
-    </div>
+<div class="row">
+  <a routerLink='/usersignup' class="btn btn-primary btn-lg btn-block">Agregar un nuevo usuario</a>
+</div>
+<hr>
+<div class="table-responsive">
+  <table datatable [dtOptions]="dtOptions" class="table table-bordered" width="100%" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Correo Electronico</th>
+        <th>Nombre completo</th>
+        <th>Opciones</th>
+      </tr>
+    </thead>
+  </table>
+</div>

@@ -20,11 +20,11 @@ export class UserService {
       primerApellido: user.primerApellido,
       segundoApellido: user.segundoApellido,
       email: user.email,
-      password: user.password,
+      password: AppUtils.hash(user.password),
       _id: "",
       roles: []
     }
-    var reqHeader = new HttpHeaders({'No-Auth':'True', 
+    var reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
     'Authorization': 'true'});
     return this.http.post(this._baseURL + '/security/usuario', body,{headers : reqHeader});
