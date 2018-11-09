@@ -105,6 +105,10 @@ export class SignUpComponent implements OnInit {
     });
   }
 
+  onValueChange(value: string) {
+    console.log('valueChange raised with value: ' + value);
+}
+
   OnSubmit(form) {
    form.roles = AppUtils.getArrayIds(form.roles, this.user.roles);
    this.userService.registerUser(form)

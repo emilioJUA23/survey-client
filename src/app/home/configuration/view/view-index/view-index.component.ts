@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewService } from '../../../../shared/view/view.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { AppConstants } from '../../../../app.constants';
 import { TreeviewItem, TreeviewConfig   } from 'ngx-treeview/src';
 
 @Component({
@@ -43,7 +42,6 @@ export class ViewIndexComponent implements OnInit {
     this.viewService.getViewTree()
     .subscribe((resp : any)=>{
       if(resp.ok){
-        console.log(resp.tree[0]);
         this.items = [new TreeviewItem(resp.tree[0])];
       }else{
         this.isTreeError = true;
@@ -58,5 +56,5 @@ export class ViewIndexComponent implements OnInit {
 
   onFilterChange(value: string) {
     console.log('filter:', value);
-}
+  }
 }

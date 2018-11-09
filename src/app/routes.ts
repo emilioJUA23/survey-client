@@ -10,6 +10,7 @@ import { WelcomeComponent } from './home/welcome/welcome.component';
 import { ForgotPasswordComponent } from './user/forgot-password/forgot-password.component';
 import { ViewIndexComponent } from './home/configuration/view/view-index/view-index.component';
 import { RolIndexComponent } from './home/configuration/rol/rol-index/rol-index.component'
+import { InsertRolComponent } from './home/configuration/rol/insert-rol/insert-rol.component'
 
 export const AppRoutes : Routes =[
     { path: 'home', component: HomeComponent, canActivate:[AuthGuard] },
@@ -37,6 +38,14 @@ export const AppRoutes : Routes =[
             {path: '', component : ConfigurationComponent,
             children: [
                 {path: '', component : RolIndexComponent}
+            ]}]
+    },
+    {
+        path: 'insert-rol', component : HomeComponent,
+        children: [
+            {path: '', component : ConfigurationComponent,
+            children: [
+                {path: '', component : InsertRolComponent}
             ]}]
     },
     {

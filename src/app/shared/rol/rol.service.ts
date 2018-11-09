@@ -23,7 +23,7 @@ export class RolService {
       _id: ""
     }
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json','Authorization': 'true' });
-    return this.http.post(this._baseURL + '/api/v1/security/rol', body,{headers : reqHeader});
+    return this.http.post(this._baseURL + '/security/rol', body,{headers : reqHeader});
   }
 
     updateRol(rol: Rol) {
@@ -38,12 +38,12 @@ export class RolService {
       _id: rol._id
     }
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json','Authorization': 'true' });
-    return this.http.put(this._baseURL +  `/api/v1/security/rol/${rol._id}`, body,{headers : reqHeader});
+    return this.http.put(this._baseURL +  `/security/rol/${rol._id}`, body,{headers : reqHeader});
   }
 
     deleteRol(idRol:number) {
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json','Authorization': 'true' });
-    return this.http.delete(this._baseURL +  `/api/v1/security/rol/${idRol}`,{headers : reqHeader});
+    return this.http.delete(this._baseURL +  `/security/rol/${idRol}`,{headers : reqHeader});
   }
 
   getRol(userRol){

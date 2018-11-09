@@ -31,7 +31,8 @@ import {ViewService} from './shared/view/view.service';
 import { ForgotPasswordComponent } from './user/forgot-password/forgot-password.component';
 import {TreeviewModule } from 'ngx-treeview';
 import { ViewIndexComponent } from './home/configuration/view/view-index/view-index.component';
-import { RolIndexComponent } from './home/configuration/rol/rol-index/rol-index.component'
+import { RolIndexComponent } from './home/configuration/rol/rol-index/rol-index.component';
+import { InsertRolComponent } from './home/configuration/rol/insert-rol/insert-rol.component'
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { RolIndexComponent } from './home/configuration/rol/rol-index/rol-index.
     SignUpComponent,
     ForgotPasswordComponent,
     ViewIndexComponent,
-    RolIndexComponent
+    RolIndexComponent,
+    InsertRolComponent
   ],
   imports: [
     TreeviewModule.forRoot(),
