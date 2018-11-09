@@ -29,6 +29,9 @@ import { ToastrModule } from 'ngx-toastr';
 import {RolService} from './shared/rol/rol.service';
 import {ViewService} from './shared/view/view.service';
 import { ForgotPasswordComponent } from './user/forgot-password/forgot-password.component';
+import {TreeviewModule } from 'ngx-treeview';
+import { ViewIndexComponent } from './home/configuration/view/view-index/view-index.component';
+import { RolIndexComponent } from './home/configuration/rol/rol-index/rol-index.component'
 
 @NgModule({
   declarations: [
@@ -45,9 +48,12 @@ import { ForgotPasswordComponent } from './user/forgot-password/forgot-password.
     UserIndexComponent,
     WelcomeComponent,
     SignUpComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    ViewIndexComponent,
+    RolIndexComponent
   ],
   imports: [
+    TreeviewModule.forRoot(),
     ReactiveFormsModule,
     ToastrModule,
     BrowserModule,

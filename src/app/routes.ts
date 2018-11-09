@@ -8,6 +8,7 @@ import { UserIndexComponent } from './home/configuration/user/user-index/user-in
 import { SignUpComponent } from './home/configuration/user/sign-up/sign-up.component';
 import { WelcomeComponent } from './home/welcome/welcome.component';
 import { ForgotPasswordComponent } from './user/forgot-password/forgot-password.component';
+import { ViewIndexComponent } from './home/configuration/view/view-index/view-index.component';
 
 export const AppRoutes : Routes =[
     { path: 'home', component: HomeComponent, canActivate:[AuthGuard] },
@@ -27,6 +28,14 @@ export const AppRoutes : Routes =[
             {path: '', component : ConfigurationComponent,
             children: [
                 {path: '', component : UserIndexComponent}
+            ]}]
+    },
+    {
+        path: 'treeview', component : HomeComponent,
+        children: [
+            {path: '', component : ConfigurationComponent,
+            children: [
+                {path: '', component : ViewIndexComponent}
             ]}]
     },
     {

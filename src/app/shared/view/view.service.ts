@@ -12,7 +12,7 @@ export class ViewService {
     this._baseURL = AppConstants.baseURL;
    }
 
-   viewmatch(view){
+   getViewTree(){
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json','Authorization': 'true' });
     return  this.http.get(this._baseURL+ `/security/vista/tree`,{ headers: reqHeader });
    }
