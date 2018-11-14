@@ -1,28 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, Renderer, ViewChild,ElementRef } from '@angular/core';
 import { DataTablesResponseService } from '../../../../shared/data-tables-response/data-tables-response.service';
 import { Rol } from '../../../../shared/rol/rol.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AppConstants } from '../../../../app.constants';
+import { Router } from '@angular/router';
+import { RolService } from '../../../../shared/rol/rol.service';
 
 @Component({
   selector: 'app-rol-index',
   templateUrl: './rol-index.component.html',
   styleUrls: ['./rol-index.component.css']
 })
-export class RolIndexComponent implements OnInit {
+export class RolIndexComponent implements  AfterViewInit, OnInit {
+  @ViewChild('btnClose') btnClose : ElementRef;
   dtOptions: DataTables.Settings = {};
   isIndexError : boolean = false;
   roles: Rol[];
   _pageLength : number;
-  
-  constructor(private dataTablesResponseService : DataTablesResponseService) { 
-    this._pageLength = AppConstants.pageLength;
+  dataDelete={
+    name : "",
+    id: ""
   }
-
-  selectOptions( id: any ) : string {
-    return `<select class='form-control'>
-      <a class="nav-link active" routerLink='#' routerLinkActive='active'>Ver/Editar</a>
-    </select>`
+  
+  constructor(private rolService:RolService,private dataTablesResponseService : DataTablesResponseService,private renderer: Renderer, private router: Router) { 
+    this._pageLength = AppConstants.pageLength;
   }
 
   ngOnInit() {
@@ -59,10 +60,45 @@ export class RolIndexComponent implements OnInit {
        { data: 'descripcion' },
        { data: '_id', 
         render:( data, type, row ) =>{
-          return this.selectOptions(data);
+         return `<button type="button" class="btn btn-primary"  data-id="${data}" data-action="ver">Ver/Actualizar</button>`;
         }
-       }]
+       },{ 
+       render:( data, type, row ) =>{
+        return `<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-id="${row._id}" data-action="eliminar" data-delete-name="${row.nombre}">Eliminar</button>`;
+       }
+      }]
     }
+  }
+  ngAfterViewInit(): void {
+    this.renderer.listenGlobal('document', 'click', (event) => {
+      if (event.target.hasAttribute("data-action")) {
+        let _action = event.target.getAttribute("data-action");
+        if (_action === "ver")
+        {
+          this.router.navigate(["/rol/" + event.target.getAttribute("data-id")]);
+        }
+        else
+        {
+          this.dataDelete.id = event.target.getAttribute("data-id");
+          this.dataDelete.name = event.target.getAttribute("data-delete-name");
+        }
+      }
+    });
+  }
+
+  deleteRol(): void{
+    this.rolService.deleteRol(this.dataDelete.id)
+    .subscribe((resp : any)=>{
+      if (resp.ok) {
+        this.btnClose.nativeElement.click();
+        window.location.reload(); 
+      } else {
+        this.isIndexError = true;
+      }
+  },
+  (err : HttpErrorResponse)=>{
+    this.isIndexError = true;
+  });
   }
 
 }

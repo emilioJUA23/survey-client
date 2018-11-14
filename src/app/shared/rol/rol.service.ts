@@ -34,14 +34,14 @@ export class RolService {
       usuarioDeIngreso: rol.usuarioDeIngreso,
       fechaDeActualizacion: new Date(),
       usuarioDeActualizacion: AppUtils.getLocal("userData")._id,
-      vistas: [],
+      vistas: rol.vistas,
       _id: rol._id
     }
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json','Authorization': 'true' });
     return this.http.put(this._baseURL +  `/security/rol/${rol._id}`, body,{headers : reqHeader});
   }
 
-    deleteRol(idRol:number) {
+    deleteRol(idRol:string) {
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json','Authorization': 'true' });
     return this.http.delete(this._baseURL +  `/security/rol/${idRol}`,{headers : reqHeader});
   }

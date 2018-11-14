@@ -32,7 +32,9 @@ import { ForgotPasswordComponent } from './user/forgot-password/forgot-password.
 import {TreeviewModule } from 'ngx-treeview';
 import { ViewIndexComponent } from './home/configuration/view/view-index/view-index.component';
 import { RolIndexComponent } from './home/configuration/rol/rol-index/rol-index.component';
-import { InsertRolComponent } from './home/configuration/rol/insert-rol/insert-rol.component'
+import { InsertRolComponent } from './home/configuration/rol/insert-rol/insert-rol.component';
+import { RolEditComponent } from './home/configuration/rol/rol-edit/rol-edit.component';
+import { UserEditComponent } from './home/configuration/user/user-edit/user-edit.component'
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { InsertRolComponent } from './home/configuration/rol/insert-rol/insert-r
     ForgotPasswordComponent,
     ViewIndexComponent,
     RolIndexComponent,
-    InsertRolComponent
+    InsertRolComponent,
+    RolEditComponent,
+    UserEditComponent
   ],
   imports: [
     TreeviewModule.forRoot(),

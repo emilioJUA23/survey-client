@@ -4,8 +4,9 @@ import { RolService } from '../../../../shared/rol/rol.service';
 import { User } from '../../../../shared/user/user.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { FormBuilder, FormArray, FormGroup, NgForm } from '@angular/forms';
+import { FormBuilder, FormArray, FormGroup } from '@angular/forms';
 import {AppUtils} from '../../../../app.utils';
+
 
 @Component({
   selector: 'app-sign-up',

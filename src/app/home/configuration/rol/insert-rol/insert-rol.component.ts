@@ -4,8 +4,7 @@ import { TreeviewItem, TreeviewConfig } from 'ngx-treeview/src';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { RolService } from '../../../../shared/rol/rol.service';
-import { Router } from '@angular/router';
-import { forEach } from '../../../../../../node_modules/@angular/router/src/utils/collection';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-insert-rol',

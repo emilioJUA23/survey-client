@@ -37,7 +37,7 @@ export class UserService {
     return this.http.post(this._baseURL + '/security/login', data, { headers: reqHeader });
   }
 
-  updateUserRoles(user: User, pull){
+  updateUserRoles(user: User){
     const body: User = {
       primerNombre: user.primerNombre,
       segundoNombre: user.segundoNombre,
@@ -49,7 +49,7 @@ export class UserService {
       roles: user.roles
     }
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json','Authorization': 'true' });
-    return this.http.post(this._baseURL + `/security/usuario/${user._id}`, body, { headers: reqHeader });
+    return this.http.put(this._baseURL + `/security/usuario/${user._id}`, body, { headers: reqHeader });
   }
 
 deleteUser(userID){

@@ -11,6 +11,8 @@ import { ForgotPasswordComponent } from './user/forgot-password/forgot-password.
 import { ViewIndexComponent } from './home/configuration/view/view-index/view-index.component';
 import { RolIndexComponent } from './home/configuration/rol/rol-index/rol-index.component'
 import { InsertRolComponent } from './home/configuration/rol/insert-rol/insert-rol.component'
+import { RolEditComponent } from './home/configuration/rol/rol-edit/rol-edit.component';
+import { UserEditComponent } from './home/configuration/user/user-edit/user-edit.component'
 
 export const AppRoutes : Routes =[
     { path: 'home', component: HomeComponent, canActivate:[AuthGuard] },
@@ -30,6 +32,22 @@ export const AppRoutes : Routes =[
             {path: '', component : ConfigurationComponent,
             children: [
                 {path: '', component : UserIndexComponent}
+            ]}]
+    },
+    {
+        path: 'user/:id', component : HomeComponent,
+        children: [
+            {path: '', component : ConfigurationComponent,
+            children: [
+                {path: '', component : UserEditComponent}
+            ]}]
+    },
+    {
+        path: 'rol/:id', component : HomeComponent,
+        children: [
+            {path: '', component : ConfigurationComponent,
+            children: [
+                {path: '', component : RolEditComponent}
             ]}]
     },
     {
