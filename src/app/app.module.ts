@@ -8,11 +8,7 @@ import { AppComponent } from './app.component';
 import { ConfigurationComponent } from './home/configuration/configuration.component';
 import { DataTablesModule } from 'angular-datatables';
 import { HomeComponent} from './home/home.component';
-import { ResultsDisplayComponent } from './results-display/results-display.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';
-import { SurveyComponent } from './survey.component';
-import { SurveyEditorComponent } from './survey.editor.component';
-import { SurveyVersioningComponent } from './survey-versioning/survey-versioning.component';
 import { UserComponent } from './user/user.component';
 
 import { AppRoutes } from './routes';
@@ -34,7 +30,14 @@ import { ViewIndexComponent } from './home/configuration/view/view-index/view-in
 import { RolIndexComponent } from './home/configuration/rol/rol-index/rol-index.component';
 import { InsertRolComponent } from './home/configuration/rol/insert-rol/insert-rol.component';
 import { RolEditComponent } from './home/configuration/rol/rol-edit/rol-edit.component';
-import { UserEditComponent } from './home/configuration/user/user-edit/user-edit.component'
+import { UserEditComponent } from './home/configuration/user/user-edit/user-edit.component';
+import { SurveyHomeComponent } from './home/survey-home/survey-home.component'
+import { SurveyComponent } from './home/survey-home/survey.component';
+import { SurveyEditorComponent } from './home/survey-home/survey.editor.component';
+import { SurveyVersioningComponent } from './home/survey-home/survey-versioning/survey-versioning.component';
+import { ResultsDisplayComponent } from './home/survey-home/results-display/results-display.component';
+import { SurveyEditorWrapperComponent } from './home/survey-home/survey-editor-wrapper/survey-editor-wrapper.component';
+import { SurveyWrapperComponent } from './home/survey-home/survey-wrapper/survey-wrapper.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,9 @@ import { UserEditComponent } from './home/configuration/user/user-edit/user-edit
     SurveyComponent,
     SignInComponent,
     SurveyEditorComponent,
+    SurveyWrapperComponent,
     SurveyVersioningComponent,
+    SurveyEditorWrapperComponent,
     ResultsDisplayComponent,
     UserComponent,
     HomeComponent,
@@ -56,7 +61,8 @@ import { UserEditComponent } from './home/configuration/user/user-edit/user-edit
     RolIndexComponent,
     InsertRolComponent,
     RolEditComponent,
-    UserEditComponent
+    UserEditComponent,
+    SurveyHomeComponent
   ],
   imports: [
     TreeviewModule.forRoot(),

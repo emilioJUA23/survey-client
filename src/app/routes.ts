@@ -13,6 +13,10 @@ import { RolIndexComponent } from './home/configuration/rol/rol-index/rol-index.
 import { InsertRolComponent } from './home/configuration/rol/insert-rol/insert-rol.component'
 import { RolEditComponent } from './home/configuration/rol/rol-edit/rol-edit.component';
 import { UserEditComponent } from './home/configuration/user/user-edit/user-edit.component'
+import { SurveyHomeComponent } from './home/survey-home/survey-home.component'
+import { ResultsDisplayComponent } from './home/survey-home/results-display/results-display.component';
+import { SurveyEditorWrapperComponent } from './home/survey-home/survey-editor-wrapper/survey-editor-wrapper.component';
+import { SurveyWrapperComponent } from './home/survey-home/survey-wrapper/survey-wrapper.component';
 
 export const AppRoutes : Routes =[
     { path: 'home', component: HomeComponent, canActivate:[AuthGuard] },
@@ -21,6 +25,37 @@ export const AppRoutes : Routes =[
         children: [
             {path: '', component : WelcomeComponent}]
     },
+
+    {
+        path: 'survey-home', component : HomeComponent,
+        children: [
+            {path: '', component : SurveyHomeComponent}]
+    },
+    {
+        path: 'survey-results', component : HomeComponent,
+        children: [
+            {path: '', component : SurveyHomeComponent,
+            children: [
+                {path: '', component : ResultsDisplayComponent }
+            ]}]
+    },
+    {
+        path: 'survey-editor', component : HomeComponent,
+        children: [
+            {path: '', component : SurveyHomeComponent,
+            children: [
+                {path: '', component : SurveyEditorWrapperComponent  }
+            ]}]
+    },
+    {
+        path: 'survey-wrapper', component : HomeComponent,
+        children: [
+            {path: '', component : SurveyHomeComponent,
+            children: [
+                {path: '', component : SurveyWrapperComponent   }
+            ]}]
+    },
+
     {
         path: 'configuration', component : HomeComponent,
         children: [

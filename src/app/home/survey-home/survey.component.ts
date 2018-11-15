@@ -31,12 +31,14 @@ export class SurveyComponent {
   set json(value: object) {
     const surveyModel = new Survey.Model(value);
     surveyModel.onComplete.add(function (result) {
-            // var xhr = new XMLHttpRequest();
-            // xhr.open('POST',"http://localhost:3000/survey/answer",true);
-            // xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-            // xhr.send(JSON.stringify(
-            //   {"instrument_id":value["_id"], "result":result.data}
-            // ));
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST',"http://localhost:3000/survey/answer",true);
+            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhr.send(JSON.stringify(
+              {"instrument_id":value["_id"], "result":result.data}
+            ));
+            console.log(xhr.responseText);
+
     });
     surveyModel.onAfterRenderQuestion.add((survey, options) => {
       if (!options.question.popupdescription) return;
