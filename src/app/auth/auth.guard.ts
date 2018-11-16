@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { AppUtils } from '../app.utils';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -9,9 +9,18 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
       if(localStorage.getItem("userToken") != null){
-        return true;
+        let view = next.data["menuID"];
+        if( AppUtils.matchView(view))
+        {
+          return true;
+        }else{
+          this.router.navigate(['/unauthorized']);
+          return false;
+        }
       }
-      this.router.navigate(['/login']);
-      return false;
+      else{
+        this.router.navigate(['/login']);
+        return false;
+      }
   }
 }

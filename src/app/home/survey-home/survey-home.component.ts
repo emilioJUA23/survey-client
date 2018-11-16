@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppUtils } from '../../app.utils';
 
 @Component({
   selector: 'app-survey-home',
@@ -6,8 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./survey-home.component.css']
 })
 export class SurveyHomeComponent implements OnInit {
-
-  constructor() { }
+  showSurveyResult:boolean;
+  showSurveyEditor:boolean;
+  showSurveyWrapper:boolean;
+  constructor() {
+    this.showSurveyResult = AppUtils.matchView("SURVEY-ANSWERS");
+    this.showSurveyEditor = AppUtils.matchView("SURVEY-BUILD");
+    this.showSurveyWrapper = AppUtils.matchView("SURVEY-VIEW");
+   }
 
   ngOnInit() {
   }

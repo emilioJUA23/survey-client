@@ -11,8 +11,23 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class HomeComponent implements OnInit {
   isUpdatePassword : boolean = false;
+  
+  showUsuario:boolean;
+  showRoles:boolean;
+  showVista:boolean;
+  showSurveyResult:boolean;
+  showSurveyEditor:boolean;
+  showSurveyWrapper:boolean;
+
   @ViewChild('btnClose') btnClose : ElementRef;
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService) { 
+    this.showUsuario = AppUtils.matchView("USER-INDEX");
+    this.showRoles = AppUtils.matchView("ROL-INDEX");
+    this.showVista = AppUtils.matchView("VIEW-INDEX");
+    this.showSurveyResult = AppUtils.matchView("SURVEY-ANSWERS");
+    this.showSurveyEditor = AppUtils.matchView("SURVEY-BUILD");
+    this.showSurveyWrapper = AppUtils.matchView("SURVEY-VIEW");
+  }
 
   ngOnInit() {
   }

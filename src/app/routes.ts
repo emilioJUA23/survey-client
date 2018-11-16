@@ -17,26 +17,31 @@ import { SurveyHomeComponent } from './home/survey-home/survey-home.component'
 import { ResultsDisplayComponent } from './home/survey-home/results-display/results-display.component';
 import { SurveyEditorWrapperComponent } from './home/survey-home/survey-editor-wrapper/survey-editor-wrapper.component';
 import { SurveyWrapperComponent } from './home/survey-home/survey-wrapper/survey-wrapper.component';
+import { NotFoundComponent } from './helpers-components/not-found/not-found.component';
+import { UnauthorizedComponent } from './helpers-components/unauthorized/unauthorized.component';
 
 export const AppRoutes : Routes =[
-    { path: 'home', component: HomeComponent, canActivate:[AuthGuard] },
+    {path:"", redirectTo: '/login', pathMatch:"full"},
+    
+    { path: 'home', component: HomeComponent, canActivate:[AuthGuard], data:{menuID:'HOME'}},
+    
     {
         path: 'welcome', component : HomeComponent,
         children: [
-            {path: '', component : WelcomeComponent}]
+            {path: '', component : WelcomeComponent,canActivate:[AuthGuard], data:{menuID:'WELCOME'}}]
     },
 
     {
         path: 'survey-home', component : HomeComponent,
         children: [
-            {path: '', component : SurveyHomeComponent}]
+            {path: '', component : SurveyHomeComponent, canActivate:[AuthGuard], data:{menuID:'SURVEY-INDEX'}}]
     },
     {
         path: 'survey-results', component : HomeComponent,
         children: [
             {path: '', component : SurveyHomeComponent,
             children: [
-                {path: '', component : ResultsDisplayComponent }
+                {path: '', component : ResultsDisplayComponent, canActivate:[AuthGuard], data:{menuID:'SURVEY-ANSWERS'} }
             ]}]
     },
     {
@@ -44,7 +49,7 @@ export const AppRoutes : Routes =[
         children: [
             {path: '', component : SurveyHomeComponent,
             children: [
-                {path: '', component : SurveyEditorWrapperComponent  }
+                {path: '', component : SurveyEditorWrapperComponent, canActivate:[AuthGuard], data:{menuID:'SURVEY-BUILD'}  }
             ]}]
     },
     {
@@ -52,21 +57,21 @@ export const AppRoutes : Routes =[
         children: [
             {path: '', component : SurveyHomeComponent,
             children: [
-                {path: '', component : SurveyWrapperComponent   }
+                {path: '', component : SurveyWrapperComponent, canActivate:[AuthGuard], data:{menuID:'SURVEY-VIEW'}  }
             ]}]
     },
 
     {
         path: 'configuration', component : HomeComponent,
         children: [
-            {path: '', component : ConfigurationComponent}]
+            {path: '', component : ConfigurationComponent, canActivate:[AuthGuard], data:{menuID:'CONFIGURATION'} }]
     },
     {
         path: 'userindex', component : HomeComponent,
         children: [
             {path: '', component : ConfigurationComponent,
             children: [
-                {path: '', component : UserIndexComponent}
+                {path: '', component : UserIndexComponent, canActivate:[AuthGuard], data:{menuID:'USER-INDEX'}}
             ]}]
     },
     {
@@ -74,39 +79,7 @@ export const AppRoutes : Routes =[
         children: [
             {path: '', component : ConfigurationComponent,
             children: [
-                {path: '', component : UserEditComponent}
-            ]}]
-    },
-    {
-        path: 'rol/:id', component : HomeComponent,
-        children: [
-            {path: '', component : ConfigurationComponent,
-            children: [
-                {path: '', component : RolEditComponent}
-            ]}]
-    },
-    {
-        path: 'rolindex', component : HomeComponent,
-        children: [
-            {path: '', component : ConfigurationComponent,
-            children: [
-                {path: '', component : RolIndexComponent}
-            ]}]
-    },
-    {
-        path: 'insert-rol', component : HomeComponent,
-        children: [
-            {path: '', component : ConfigurationComponent,
-            children: [
-                {path: '', component : InsertRolComponent}
-            ]}]
-    },
-    {
-        path: 'treeview', component : HomeComponent,
-        children: [
-            {path: '', component : ConfigurationComponent,
-            children: [
-                {path: '', component : ViewIndexComponent}
+                {path: '', component : UserEditComponent, canActivate:[AuthGuard], data:{menuID:'USER-UPDATE'}}
             ]}]
     },
     {
@@ -114,7 +87,40 @@ export const AppRoutes : Routes =[
         children: [
             {path: '', component : ConfigurationComponent,
             children: [
-                {path: '', component : SignUpComponent}
+                {path: '', component : SignUpComponent, canActivate:[AuthGuard], data:{menuID:'USER-SIGN-UP'}}
+            ]}]
+    },
+
+    {
+        path: 'rol/:id', component : HomeComponent,
+        children: [
+            {path: '', component : ConfigurationComponent,
+            children: [
+                {path: '', component : RolEditComponent, canActivate:[AuthGuard], data:{menuID:'ROL-UPDATE'}}
+            ]}]
+    },
+    {
+        path: 'rolindex', component : HomeComponent,
+        children: [
+            {path: '', component : ConfigurationComponent,
+            children: [
+                {path: '', component : RolIndexComponent, canActivate:[AuthGuard], data:{menuID:'ROL-INDEX'}}
+            ]}]
+    },
+    {
+        path: 'insert-rol', component : HomeComponent,
+        children: [
+            {path: '', component : ConfigurationComponent,
+            children: [
+                {path: '', component : InsertRolComponent, canActivate:[AuthGuard], data:{menuID:'ROL-CREATE'}}
+            ]}]
+    },
+    {
+        path: 'treeview', component : HomeComponent,
+        children: [
+            {path: '', component : ConfigurationComponent,
+            children: [
+                {path: '', component : ViewIndexComponent, canActivate:[AuthGuard], data:{menuID:'VIEW-INDEX'}}
             ]}]
     },
     {
@@ -125,5 +131,6 @@ export const AppRoutes : Routes =[
         path: 'forgotpassword', component : UserComponent,
         children: [{path: '', component : ForgotPasswordComponent}]
     },
-    {path:"", redirectTo: '/login', pathMatch:"full"}
+    { path: 'unauthorized', component: UnauthorizedComponent },
+    { path: '**', component: NotFoundComponent }
 ];

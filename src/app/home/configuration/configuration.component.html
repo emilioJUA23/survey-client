@@ -3,13 +3,13 @@
     <div class="card mb-3">
       <div class="card-header">
         <ul class="nav nav-tabs card-header-tabs">
-          <li class="nav-item">
+          <li *ngIf="showUsuario" class="nav-item">
             <a class="nav-link" routerLink='/userindex' routerLinkActive='active'>Usuarios</a>
           </li>
-          <li class="nav-item">
+          <li *ngIf="showRoles" class="nav-item">
             <a class="nav-link" routerLink='/rolindex' routerLinkActive='active'>Roles</a>
           </li>
-          <li class="nav-item">
+          <li *ngIf="showVista" class="nav-item">
             <a class="nav-link" routerLink='/treeview' routerLinkActive='active'>Ventanas</a>
           </li>
         </ul>

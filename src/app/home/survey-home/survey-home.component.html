@@ -1,10 +1,22 @@
-<div style="text-align:center">
-  <h1>
-    <nav>
-          <a routerLink="/survey-results">Results</a> |
-          <a routerLink="/survey-editor">Editor</a> |
-          <a routerLink="/survey-wrapper">Survey</a>
-    </nav>
-    <router-outlet></router-outlet>
-  </h1>
+<div id="content-wrapper">
+  <div class="container-fluid">
+    <div class="card mb-3">
+      <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+          <li class="nav-item">
+            <a class="nav-link" *ngIf="showSurveyWrapper" routerLink='/survey-wrapper' routerLinkActive='active'>Vista de la encuesta actual</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" *ngIf="showSurveyEditor" routerLink='/survey-editor' routerLinkActive='active'>Editor de la encuesta</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" *ngIf="showSurveyWrapper" routerLink='/survey-wrapper' routerLinkActive='active'>Resultado de encuestas</a>
+          </li>
+        </ul>
+      </div>
+      <div class="card-body">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
 </div>

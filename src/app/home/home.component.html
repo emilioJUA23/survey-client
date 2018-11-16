@@ -20,16 +20,35 @@
 
 <div id="wrapper">
   <ul class="sidebar navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" routerLink='/userindex' routerLinkActive='active'>
+    <li *ngIf="showUsuario || showRoles || showVista" class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
         <i class="fas fa-fw fa-list-alt"></i>
         <span>Configuracion general</span>
       </a>
+      <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+        <h6 *ngIf="showUsuario" class="dropdown-header">Usuarios:</h6>
+        <a *ngIf="showUsuario" class="dropdown-item" routerLink='/userindex' routerLinkActive='active'>Listado</a>
+        <div *ngIf="showRoles" class="dropdown-divider"></div>
+        <h6 *ngIf="showRoles" class="dropdown-header">Roles:</h6>
+        <a *ngIf="showRoles" class="dropdown-item" routerLink='/rolindex' routerLinkActive='active'>Listado</a>
+        <div *ngIf="showVista" class="dropdown-divider"></div>
+        <h6 *ngIf="showVista" class="dropdown-header">Vista:</h6>
+        <a *ngIf="showVista" class="dropdown-item" routerLink='/treeview' routerLinkActive='active'>Estructura</a>
+      </div>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink='/survey-home' routerLinkActive='active'>
+    <li *ngIf="showSurveyResult || showSurveyEditor || showSurveyWrapper" class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
         <i class="fas fa-fw fa-folder"></i>
-        <span>Administracion de encuestas</span></a>
+        <span>Administración de encuestas</span>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+        <h6 class="dropdown-header">Opciones de encuestas:</h6>
+        <a *ngIf="showSurveyResult" class="dropdown-item" routerLink='/survey-results' routerLinkActive='active'>Resultados</a>
+        <a *ngIf="showSurveyEditor" class="dropdown-item" routerLink='/survey-editor' routerLinkActive='active'>Editor</a>
+        <a *ngIf="showSurveyWrapper" class="dropdown-item" routerLink='/survey-wrapper' routerLinkActive='active'>Visualización</a>
+      </div>
     </li>
   </ul>
   <router-outlet></router-outlet>
@@ -54,7 +73,7 @@
         </div>
         <form #loginForm="ngForm" (ngSubmit)="changePassword(Password.value)">
           <div *ngIf="isUpdatePassword" class="alert alert-danger text-center" role="alert">
-            Hubo un error en la actualizacion de contrasena
+            Hubo un error en la actualizacion de contraseña
           </div>
           <div class="modal-body">
             <div class="form-group">

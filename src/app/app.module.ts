@@ -38,6 +38,8 @@ import { SurveyVersioningComponent } from './home/survey-home/survey-versioning/
 import { ResultsDisplayComponent } from './home/survey-home/results-display/results-display.component';
 import { SurveyEditorWrapperComponent } from './home/survey-home/survey-editor-wrapper/survey-editor-wrapper.component';
 import { SurveyWrapperComponent } from './home/survey-home/survey-wrapper/survey-wrapper.component';
+import { NotFoundComponent } from './helpers-components/not-found/not-found.component';
+import { UnauthorizedComponent } from './helpers-components/unauthorized/unauthorized.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,9 @@ import { SurveyWrapperComponent } from './home/survey-home/survey-wrapper/survey
     InsertRolComponent,
     RolEditComponent,
     UserEditComponent,
-    SurveyHomeComponent
+    SurveyHomeComponent,
+    NotFoundComponent,
+    UnauthorizedComponent
   ],
   imports: [
     TreeviewModule.forRoot(),

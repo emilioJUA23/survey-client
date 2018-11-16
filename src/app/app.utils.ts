@@ -23,4 +23,17 @@ export class AppUtils {
         .filter(v => v !== null);
         return selectedOrderIds;
     }
+
+    public static matchView(idView) : boolean{
+        const user = JSON.parse(localStorage.getItem("userData"));
+        console.log(user);
+        if(user){
+            if(user.vistas){
+                if(user.vistas.includes(idView)){return true}
+                else{return false;}
+            }
+            else{return false;}
+        }
+        else {return false;}
+    }
 }
