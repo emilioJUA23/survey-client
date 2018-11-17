@@ -1,0 +1,25 @@
+<div *ngIf="isLoginError" class="alert alert-danger text-center"  role="alert">
+    Correo Electrónico o contraseña incorrecta
+  </div>
+<div class="card card-login mx-auto mt-5">
+    <div class="card-header">Ingreso</div>
+    <div class="card-body">
+      <form  #loginForm="ngForm" (ngSubmit)="OnSubmit(email.value,Password.value)">
+        <div class="form-group">
+          <div class="form-label-group">
+            <input type="email"  #email ngModel name="email" class="form-control" autofocus="autofocus" required>
+            <label for="inputEmail">Correo Electrónico</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-label-group">
+            <input type="password" #Password ngModel name="Password" class="form-control"  required>
+            <label for="inputPassword">Contraseña</label>
+          </div>
+        </div>
+        <button [disabled]="!loginForm.valid" class="btn btn-primary btn-block" type="submit">Ingresar</button>
+      </form>
+      <div class="text-center">
+        <a  class="d-block small" routerLink='/forgotpassword' routerLinkActive='active'>¿Olvidaste tu contraseña?</a>
+      </div>
+    </div>

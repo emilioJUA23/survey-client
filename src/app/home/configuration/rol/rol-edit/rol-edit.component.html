@@ -1,0 +1,24 @@
+<h1>Actualizar un rol</h1>
+<hr>
+<form [formGroup]="rolForm" (ngSubmit)="OnSubmit(rolForm.value)">
+    <div class="form-group">
+        <div class="form-label-group">
+          <input class="form-control" type="text" formControlName="nombre" name="nombre" required>
+          <label data-error="Campo requerido!">Nombre del rol</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label-group">
+          <input class="form-control" type="text" formControlName="descripcion" name="descripcion" required>
+          <label data-error="Campo requerido!">descripcion</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label-group">
+          <ngx-treeview [config]="config" [items]="items" (selectedChange)="onSelectedChange($event)">
+          </ngx-treeview>
+        </div>
+      </div>
+      <br>
+      <button  class="btn btn-primary btn-block" style="display:inline-block;" type="submit">Actualizar usuario</button>
+</form>

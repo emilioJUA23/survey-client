@@ -1,0 +1,22 @@
+<div id="content-wrapper">
+  <div class="container-fluid">
+    <div class="card mb-3">
+      <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+          <li *ngIf="showUsuario" class="nav-item">
+            <a class="nav-link" routerLink='/userindex' routerLinkActive='active'>Usuarios</a>
+          </li>
+          <li *ngIf="showRoles" class="nav-item">
+            <a class="nav-link" routerLink='/rolindex' routerLinkActive='active'>Roles</a>
+          </li>
+          <li *ngIf="showVista" class="nav-item">
+            <a class="nav-link" routerLink='/treeview' routerLinkActive='active'>Ventanas</a>
+          </li>
+        </ul>
+      </div>
+      <div class="card-body">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

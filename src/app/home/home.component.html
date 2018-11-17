@@ -1,0 +1,93 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+    <a class="navbar-brand mr-1 active"  routerLink='/welcome' routerLinkActive='active'>Digitalizacion de encuestas</a>
+    <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+    </button>
+    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0"></form>
+    <ul class="navbar-nav ml-auto ml-md-0">
+      <li class="nav-item dropdown no-arrow">
+        <a class="nav-link dropdown-toggle"  id="userDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-user-circle fa-fw"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+          <a class="dropdown-item" routerLink='#' data-toggle="modal" data-target="#changePasswordModal">Actualizar contraseña</a>
+          <a class="dropdown-item" routerLink='#'  (click)="Logout()">salir</a>
+        </div>
+      </li>
+    </ul>
+</nav>
+
+<div id="wrapper">
+  <ul class="sidebar navbar-nav">
+    <li *ngIf="showUsuario || showRoles || showVista" class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
+        <i class="fas fa-fw fa-list-alt"></i>
+        <span>Configuracion general</span>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+        <h6 *ngIf="showUsuario" class="dropdown-header">Usuarios:</h6>
+        <a *ngIf="showUsuario" class="dropdown-item" routerLink='/userindex' routerLinkActive='active'>Listado</a>
+        <div *ngIf="showRoles" class="dropdown-divider"></div>
+        <h6 *ngIf="showRoles" class="dropdown-header">Roles:</h6>
+        <a *ngIf="showRoles" class="dropdown-item" routerLink='/rolindex' routerLinkActive='active'>Listado</a>
+        <div *ngIf="showVista" class="dropdown-divider"></div>
+        <h6 *ngIf="showVista" class="dropdown-header">Vista:</h6>
+        <a *ngIf="showVista" class="dropdown-item" routerLink='/treeview' routerLinkActive='active'>Estructura</a>
+      </div>
+    </li>
+    <li *ngIf="showSurveyResult || showSurveyEditor || showSurveyWrapper" class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
+        <i class="fas fa-fw fa-folder"></i>
+        <span>Administración de encuestas</span>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+        <h6 class="dropdown-header">Opciones de encuestas:</h6>
+        <a *ngIf="showSurveyResult" class="dropdown-item" routerLink='/survey-results' routerLinkActive='active'>Resultados</a>
+        <a *ngIf="showSurveyEditor" class="dropdown-item" routerLink='/survey-editor' routerLinkActive='active'>Editor</a>
+        <a *ngIf="showSurveyWrapper" class="dropdown-item" routerLink='/survey-wrapper' routerLinkActive='active'>Visualización</a>
+      </div>
+    </li>
+  </ul>
+  <router-outlet></router-outlet>
+</div>
+
+<footer class="sticky-footer">
+    <div class="container my-auto">
+      <div class="copyright text-center my-auto">
+        <span>Copyright © Universidad Rafael Landivar - 2018</span>
+      </div>
+    </div>
+  </footer>
+  
+  <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">¿Desea cambiar la contraseña?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <form #loginForm="ngForm" (ngSubmit)="changePassword(Password.value)">
+          <div *ngIf="isUpdatePassword" class="alert alert-danger text-center" role="alert">
+            Hubo un error en la actualizacion de contraseña
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <div class="form-label-group">
+                <input type="password" #Password ngModel name="Password" class="form-control" required>
+                <label for="inputPassword">Escribe la contraseña</label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" #btnClose type="button" data-dismiss="modal">Cancelar</button>
+            <button class="btn btn-primary" type="submit">cambiar contraseña</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
