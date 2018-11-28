@@ -5,6 +5,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { AppConstants } from '../../../../app.constants';
 import { Router } from '@angular/router';
 import { RolService } from '../../../../shared/rol/rol.service';
+import { LanguageDatatable} from '../../../../language/language.datatable';
 
 @Component({
   selector: 'app-rol-index',
@@ -35,8 +36,9 @@ export class RolIndexComponent implements  AfterViewInit, OnInit {
       serverSide: true,
       processing: true,
       ordering: false,
-      searching: true,
+      searching: false,
       info: false,
+      language: LanguageDatatable.getSpanish,
       ajax: (dataTablesParameters: any, callback) => {
         this.dataTablesResponseService.getTable(dataTablesParameters, "/security/rol/all")
           .subscribe((resp : any)=>{

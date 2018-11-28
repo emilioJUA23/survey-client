@@ -96,6 +96,7 @@ export class InsertRolComponent implements OnInit {
       }
     }
     form.vistas = this.views;
+    console.log(form);
     this.rolService.createRol(form)
        .subscribe((data: any) => {
          if (data.ok == true) {

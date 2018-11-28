@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SurveyComponent} from '../survey.component';
+import {AppConstants} from '../../../app.constants';
+import {AppUtils} from '../../../app.utils';
 
 @Component({
   selector: 'app-survey-wrapper',
@@ -7,14 +9,18 @@ import { SurveyComponent} from '../survey.component';
   styleUrls: ['./survey-wrapper.component.css']
 })
 export class SurveyWrapperComponent implements OnInit {
+  _baseURL : string;
+  json : any;
   consult_surveys(){
     var req = new XMLHttpRequest();
-    req.open('GET', 'http://localhost:3000/survey/instrument', false);
+    req.open('GET', `${this._baseURL}/survey/instrument`, false);
+    let  userToken =AppUtils.getLocal('userToken');
+    req.setRequestHeader("Authorization", userToken);
     req.send(null);
     if (req.status == 200)
     {
       var jsonArray = JSON.parse(req.responseText);
-      return jsonArray[jsonArray.length-1];
+      return jsonArray[0];
     }
     else
     {
@@ -22,9 +28,11 @@ export class SurveyWrapperComponent implements OnInit {
       return {};
     }
   }
-  json = this.consult_surveys();
 
-  constructor() { }
+  constructor() { 
+    this._baseURL = AppConstants.baseURL;
+    this.json = this.consult_surveys();
+  }
 
   ngOnInit() {
   }

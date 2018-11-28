@@ -34,7 +34,6 @@ import { UserEditComponent } from './home/configuration/user/user-edit/user-edit
 import { SurveyHomeComponent } from './home/survey-home/survey-home.component'
 import { SurveyComponent } from './home/survey-home/survey.component';
 import { SurveyEditorComponent } from './home/survey-home/survey.editor.component';
-import { SurveyVersioningComponent } from './home/survey-home/survey-versioning/survey-versioning.component';
 import { ResultsDisplayComponent } from './home/survey-home/results-display/results-display.component';
 import { SurveyEditorWrapperComponent } from './home/survey-home/survey-editor-wrapper/survey-editor-wrapper.component';
 import { SurveyWrapperComponent } from './home/survey-home/survey-wrapper/survey-wrapper.component';
@@ -49,7 +48,6 @@ import { UnauthorizedComponent } from './helpers-components/unauthorized/unautho
     SignInComponent,
     SurveyEditorComponent,
     SurveyWrapperComponent,
-    SurveyVersioningComponent,
     SurveyEditorWrapperComponent,
     ResultsDisplayComponent,
     UserComponent,

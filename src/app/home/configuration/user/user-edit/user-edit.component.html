@@ -33,7 +33,7 @@
       </div>
       <div *ngIf='rolIsService'>
           <div class="form-group">
-              <h3>Roles</h3>
+              <h3>Roles asignados</h3>
                 <div class="form-label-group" *ngFor="let rol of userForm.controls.roles.controls; let i=index">
                   <label><input type="checkbox" formArrayName="roles" [formControl]="rol" [checked]="user.roles[i].selected" >{{user.roles[i].nombre}}</label>
                   <br>

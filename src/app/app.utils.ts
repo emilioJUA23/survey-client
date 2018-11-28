@@ -1,4 +1,6 @@
 import * as crypto from 'crypto-js';
+import { saveAs } from 'file-saver/dist/fileSaver';
+import { Response } from '@angular/http';
 
 export class AppUtils {
     public static hash( data: any ) : string {
@@ -35,5 +37,17 @@ export class AppUtils {
             else{return false;}
         }
         else {return false;}
+    }
+
+    public static saveFile(blobContent: object, fileName: string){
+        const blob = new Blob([blobContent], { type: 'application/octet-stream' });
+        saveAs(blob, fileName);
+    }
+
+    public static getFileNameFromResponseContentDisposition(res: any){
+        const contentDisposition = res.headers.get('content-disposition') || '';
+        const matches = /filename=([^;]+)/ig.exec(contentDisposition);
+        const fileName = (matches[1] || 'untitled').trim();
+        return fileName;
     }
 }

@@ -2,6 +2,8 @@ import { Component, Input } from "@angular/core";
 import * as Survey from "survey-angular";
 import * as widgets from "surveyjs-widgets";
 import { Http } from '@angular/http';
+import {AppConstants} from '../../app.constants';
+import {AppUtils} from '../../app.utils';
 
 import "inputmask/dist/inputmask/phone-codes/phone.js";
 
@@ -32,8 +34,10 @@ export class SurveyComponent {
     const surveyModel = new Survey.Model(value);
     surveyModel.onComplete.add(function (result) {
             var xhr = new XMLHttpRequest();
-            xhr.open('POST',"http://localhost:3000/survey/answer",true);
+            xhr.open('POST',`${AppConstants.baseURL}/survey/answer`,true);
             xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            let  userToken =AppUtils.getLocal('userToken');
+            xhr.setRequestHeader("Authorization", userToken);
             xhr.send(JSON.stringify(
               {"instrument_id":value["_id"], "result":result.data}
             ));

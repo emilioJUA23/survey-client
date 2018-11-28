@@ -9,12 +9,14 @@
       </div>
       <div class="form-group">
         <div class="form-label-group">
-          <input class="form-control" type="text" formControlName="descripcion" name="descripcion" required>
-          <label data-error="Campo requerido!">descripcion</label>
+            Descripción:
+            <br>
+          <textarea  class="form-control"  formControlName="descripcion" name="descripcion" cols="40" rows="5" required></textarea>
         </div>
       </div>
       <div class="form-group">
         <div class="form-label-group">
+            <h3>Ventanas autorizadas</h3>
           <ngx-treeview [config]="config" [items]="items" (selectedChange)="onSelectedChange($event)">
           </ngx-treeview>
         </div>

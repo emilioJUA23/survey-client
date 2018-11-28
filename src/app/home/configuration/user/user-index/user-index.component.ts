@@ -5,6 +5,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { AppConstants } from '../../../../app.constants';
 import { Router } from '@angular/router';
 import { UserService } from '../../../../shared/user/user.service';
+import { LanguageDatatable} from '../../../../language/language.datatable';
 
 @Component({
   selector: 'app-user-index',
@@ -28,15 +29,15 @@ export class UserIndexComponent implements  AfterViewInit, OnInit {
 
   ngOnInit(): void {
     const that = this;
-   
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: this._pageLength,
       serverSide: true,
       processing: true,
       ordering: false,
-      searching: true,
+      searching: false,
       info: false,
+      language: LanguageDatatable.getSpanish,
       ajax: (dataTablesParameters: any, callback) => {
         this.dataTablesResponseService.getTable(dataTablesParameters, "/security/usuario/all")
           .subscribe((resp : any)=>{

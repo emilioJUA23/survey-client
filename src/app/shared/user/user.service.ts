@@ -22,7 +22,7 @@ export class UserService {
       email: user.email,
       password: AppUtils.hash(user.password),
       _id: "",
-      roles: []
+      roles: user.roles
     }
     var reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',

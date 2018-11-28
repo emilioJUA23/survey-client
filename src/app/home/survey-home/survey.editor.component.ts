@@ -38,7 +38,7 @@ SurveyEditor.SurveyPropertyModalEditor.registerCustomWidget(
   "html",
   CkEditor_ModalEditor
 );
-
+SurveyEditor.editorLocalization.currentLocale = "es";
 @Component({
   selector: "survey-editor",
   template: `<div id="surveyEditorContainer"></div>`

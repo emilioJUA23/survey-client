@@ -19,7 +19,7 @@ export class RolService {
       usuarioDeIngreso: localStorage.getItem('userData'),
       fechaDeActualizacion: null,
       usuarioDeActualizacion: null,
-      vistas: [],
+      vistas: rol.vistas,
       _id: ""
     }
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json','Authorization': 'true' });
