@@ -10499,7 +10499,7 @@ var AppConstants = /** @class */ (function () {
     function AppConstants() {
     }
     Object.defineProperty(AppConstants, "baseURL", {
-        get: function () { return "http://35.224.77.125/api/v1"; },
+        get: function () { return "http://186.151.197.22:8080/api/v1"; },
         enumerable: true,
         configurable: true
     });
